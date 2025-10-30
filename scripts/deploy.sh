@@ -1,8 +1,9 @@
+```bash
 #!/bin/bash
 set -e
 
-# Multi-Environment Deploy Script
-# Default to production if not specified
+# DevOps Simulator Deployment Script (Merged Final)
+
 DEPLOY_ENV=${DEPLOY_ENV:-production}
 
 echo "==================================="
@@ -11,26 +12,22 @@ echo "==================================="
 
 if [ "$DEPLOY_ENV" = "production" ]; then
     echo "Mode: Production"
-    DEPLOY_REGION="us-east-1"
-    APP_PORT=8080
-    echo "Environment: $DEPLOY_ENV"
-    echo "Region: $DEPLOY_REGION"
-    echo "Port: $APP_PORT"
+    npm install --only=prod
     echo "Starting production deployment..."
+    echo "✅ Production deployment complete!"
 
 elif [ "$DEPLOY_ENV" = "development" ]; then
     echo "Mode: Development"
-    DEPLOY_MODE="docker-compose"
-    APP_PORT=3000
-    echo "Environment: $DEPLOY_ENV"
-    echo "Mode: $DEPLOY_MODE"
-    echo "Installing dependencies..."
     npm install
-    echo "Starting development server..."
+    echo "Starting development environment..."
+    npm run dev
+    echo "✅ Development started!"
 
 else
-    echo "Error: Unknown environment $DEPLOY_ENV"
-    exit 1
+    echo "Mode: Experimental (AI Mode)"
+    python3 scripts/ai-analyzer.py --analyze-deployment
+    npm run start:ai
+    echo "✅ AI deployment running!"
 fi
 
-echo "Deployment completed successfully!"
+echo "✅ Deployment finished successfully!"
