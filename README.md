@@ -25,4 +25,5 @@ See `/docs` folder for detailed documentation.
 ## License
 MIT License
 
-### Update from Dev branch
+### Update made in Dev branch for conflict test
+
